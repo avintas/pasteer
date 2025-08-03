@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:blob": "node scripts/test-blob-token.js"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.3.2",
@@ -16,6 +17,7 @@
     "@vercel/blob": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "lucide-react": "^0.536.0",
     "next": "15.4.5",
     "react": "19.1.0",

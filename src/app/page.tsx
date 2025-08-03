@@ -19,6 +19,7 @@ import {
 import { useContentProcessor } from "@/hooks/useContentProcessor"
 import { useMetadata } from "@/hooks/useMetadata"
 import { ProcessingResult } from "@/types"
+import { getOptimizedImageProps } from "@/lib/utils"
 
 export default function Home() {
   // Custom hooks for state management
@@ -337,12 +338,13 @@ ${content.rawContent}`
                 </div>
                 <div className="relative">
                   <Image
-                    src="/ai_cartoon_face.jpg"
-                    alt="AI Cartoon Face"
-                    width={40}
-                    height={40}
-                    className="rounded-full border-2 border-slate-200 dark:border-slate-700 shadow-sm"
-                    priority
+                    {...getOptimizedImageProps(
+                      "/ai_cartoon_face.jpg",
+                      "AI Cartoon Face",
+                      40,
+                      40,
+                      "rounded-full border-2 border-slate-200 dark:border-slate-700 shadow-sm"
+                    )}
                   />
                 </div>
               </div>

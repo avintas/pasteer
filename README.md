@@ -20,6 +20,41 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Image Handling for Vercel Deployment
+
+This application is optimized for Vercel deployment with proper image handling:
+
+### Local Images
+- Place images in the `public/` directory
+- Reference them with leading slash: `/image-name.jpg`
+- Use the `next/image` component for optimization
+- Images are automatically optimized and served via CDN
+
+### Image Configuration
+- Next.js image optimization is enabled
+- Supports WebP and AVIF formats for better performance
+- Responsive image sizes configured for different devices
+- Vercel Blob storage integration ready for external images
+
+### Best Practices
+- Use the `getOptimizedImageProps()` utility function for consistent image handling
+- Always provide `alt` text for accessibility
+- Set appropriate `width` and `height` for layout stability
+- Use `priority` for above-the-fold images
+
+## Blob Storage Setup
+
+This application uses Vercel Blob for storing processed content. To enable this feature:
+
+1. **Get your BLOB_READ_WRITE_TOKEN** from the [Vercel Dashboard](https://vercel.com/dashboard)
+2. **Create a `.env.local` file** in your project root:
+   ```bash
+   BLOB_READ_WRITE_TOKEN=vercel_blob_rw_your_token_here
+   ```
+3. **Restart your development server**
+
+For detailed setup instructions, see [BLOB_TOKEN_SETUP.md](./BLOB_TOKEN_SETUP.md).
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
