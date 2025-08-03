@@ -14,8 +14,8 @@ export function getUnifiedImageUrl(filename: string, options?: {
   const isProduction = process.env.NODE_ENV === 'production'
   
   if (isProduction) {
-    // On Vercel, use blob storage URL if configured
-    const blobStoreUrl = process.env.NEXT_PUBLIC_BLOB_STORE_URL
+    // On Vercel, use blob storage URL if configured (optional)
+    const blobStoreUrl = process.env.NEXT_PUBLIC_BLOB_STORE_URL || 'https://nqezafsao1noacy7.public.blob.vercel-storage.com'
     if (blobStoreUrl) {
       // Ensure clean filename (remove leading slash if present)
       const cleanFilename = filename.startsWith('/') ? filename.substring(1) : filename
