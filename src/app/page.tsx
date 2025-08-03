@@ -19,6 +19,7 @@ import {
 import { useContentProcessor } from "@/hooks/useContentProcessor"
 import { useMetadata } from "@/hooks/useMetadata"
 import { ProcessingResult } from "@/types"
+import { getUnifiedImageUrl } from "@/lib/utils"
 
 export default function Home() {
   // Custom hooks for state management
@@ -337,7 +338,7 @@ ${content.rawContent}`
                 </div>
                 <div className="relative">
                   <Image
-                    src="/ai_cartoon_face.jpg"
+                    src={getUnifiedImageUrl("ai_cartoon_face.jpg")}
                     alt="AI Cartoon Face"
                     width={40}
                     height={40}
