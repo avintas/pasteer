@@ -14,7 +14,7 @@ export function getUnifiedImageUrl(filename: string, options?: {
   const isProduction = process.env.NODE_ENV === 'production'
   
   if (isProduction) {
-    // On Vercel, use blob storage URL
+    // On Vercel, use blob storage URL if configured
     const blobStoreUrl = process.env.NEXT_PUBLIC_BLOB_STORE_URL
     if (blobStoreUrl) {
       // Ensure clean filename (remove leading slash if present)
@@ -32,7 +32,7 @@ export function getUnifiedImageUrl(filename: string, options?: {
     }
   }
   
-  // In development or if no blob URL configured, use local public directory
+  // Fallback: use local public directory (works in both dev and production)
   let url = `/${filename}`
   
   // Add cache buster for local development too if provided

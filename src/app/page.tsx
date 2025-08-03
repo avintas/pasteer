@@ -337,6 +337,13 @@ ${content.rawContent}`
                   <p className="text-xs text-slate-500 dark:text-slate-400">Content Processing Tool</p>
                 </div>
                 <div className="relative">
+                  {/* Temporary fallback - replace with original when blob is configured */}
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center border-2 border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span className="text-white text-sm font-bold">AI</span>
+                  </div>
+                  
+                  {/* Original image - uncomment when blob storage is configured */}
+                  {/*
                   <Image
                     src={getUnifiedImageUrl("ai_cartoon_face.jpg")}
                     alt="AI Cartoon Face"
@@ -344,7 +351,14 @@ ${content.rawContent}`
                     height={40}
                     className="rounded-full border-2 border-slate-200 dark:border-slate-700 shadow-sm"
                     priority
+                    onError={(e) => {
+                      console.error('Image failed to load:', e);
+                      console.log('Image URL:', getUnifiedImageUrl("ai_cartoon_face.jpg"));
+                      console.log('Environment:', process.env.NODE_ENV);
+                      console.log('Blob URL:', process.env.NEXT_PUBLIC_BLOB_STORE_URL);
+                    }}
                   />
+                  */}
                 </div>
               </div>
             </div>
@@ -358,6 +372,12 @@ ${content.rawContent}`
                 Settings
               </Button>
             </div>
+            {/* Debug info - remove in production */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="text-xs text-gray-500 mt-2">
+                Debug: {process.env.NODE_ENV} | Image: {getUnifiedImageUrl("ai_cartoon_face.jpg")}
+              </div>
+            )}
           </div>
         </div>
       </header>
