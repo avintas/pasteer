@@ -41,6 +41,13 @@ export default function Home() {
   // Local state for UI
   const [isSaving, setIsSaving] = useState(false)
 
+  // Debug image URL
+  useEffect(() => {
+    console.log('Debug - Image URL:', getUnifiedImageUrl("ai_cartoon_face.jpg"));
+    console.log('Debug - Environment:', process.env.NODE_ENV);
+    console.log('Debug - Blob URL:', process.env.NEXT_PUBLIC_BLOB_STORE_URL);
+  }, [])
+
   // Handle content processing
   const handleProcessContent = async () => {
     if (!content.rawContent.trim()) return
@@ -337,9 +344,26 @@ ${content.rawContent}`
                   <p className="text-xs text-slate-500 dark:text-slate-400">Content Processing Tool</p>
                 </div>
                 <div className="relative">
-                  {/* Original image - restored */}
+                  {/* Test with regular img tag */}
+                  <img
+                    src="/ai_cartoon_face.jpg"
+                    alt="AI Cartoon Face"
+                    width={40}
+                    height={40}
+                    className="rounded-full border-2 border-slate-200 dark:border-slate-700 shadow-sm"
+                    onError={(e) => {
+                      console.error('Regular img failed to load:', e);
+                      console.log('Direct Image URL:', "/ai_cartoon_face.jpg");
+                    }}
+                    onLoad={() => {
+                      console.log('Regular img loaded successfully!');
+                    }}
+                  />
+                  
+                  {/* Next.js Image component - commented out for testing */}
+                  {/*
                   <Image
-                    src={getUnifiedImageUrl("ai_cartoon_face.jpg")}
+                    src="/ai_cartoon_face.jpg"
                     alt="AI Cartoon Face"
                     width={40}
                     height={40}
@@ -347,11 +371,17 @@ ${content.rawContent}`
                     priority
                     onError={(e) => {
                       console.error('Image failed to load:', e);
-                      console.log('Image URL:', getUnifiedImageUrl("ai_cartoon_face.jpg"));
+                      console.log('Direct Image URL:', "/ai_cartoon_face.jpg");
+                      console.log('Unified Image URL:', getUnifiedImageUrl("ai_cartoon_face.jpg"));
                       console.log('Environment:', process.env.NODE_ENV);
                       console.log('Blob URL:', process.env.NEXT_PUBLIC_BLOB_STORE_URL);
                     }}
+                    onLoad={() => {
+                      console.log('Image loaded successfully!');
+                      console.log('Image URL:', "/ai_cartoon_face.jpg");
+                    }}
                   />
+                  */}
                   
                   {/* Temporary fallback - commented out */}
                   {/*
